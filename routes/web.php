@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\TipoComidaController;
+use App\Http\Controllers\ComidaController;
+
+Route::resource('tipo_comidas', TipoComidaController::class);
+Route::resource('comidas', ComidaController::class);
