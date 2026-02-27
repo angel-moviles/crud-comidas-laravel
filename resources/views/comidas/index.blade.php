@@ -72,6 +72,26 @@
                 @method('DELETE')
                 <button type="submit">Eliminar</button>
             </form>
+            <form action="{{ route('comidas.update', $comida->id_comida) }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <input type="text" name="nombre_comida" value="{{ $comida->nombre_comida }}">
+            <input type="number" name="costo" step="0.01" value="{{ $comida->costo }}">
+            <textarea name="detalle_comida">{{ $comida->detalle_comida }}</textarea>
+
+            <select name="id_tipo_comida">
+                @foreach($tipos as $tipo)
+                    <option value="{{ $tipo->id_tipo_comida }}"
+                        {{ $comida->id_tipo_comida == $tipo->id_tipo_comida ? 'selected' : '' }}>
+                        {{ $tipo->nombre_categoria }}
+                    </option>
+                @endforeach
+            </select>
+
+            <button type="submit">Actualizar</button>
+        </form>
+
 
         </td>
     </tr>

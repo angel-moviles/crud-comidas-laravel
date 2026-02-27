@@ -31,6 +31,23 @@ class ComidaController extends Controller
                          ->with('success', 'Comida creada correctamente');
     }
 
+    public function update(Request $request, $id)
+    {
+        $item = Comida::findOrFail($id);
+
+        $data = $request->validate([
+            'nombre_comida' => 'required|max:100',
+            'costo' => 'required|numeric',
+            'detalle_comida' => 'required',
+            'id_tipo_comida' => 'required'
+        ]);
+
+        $item->update($data);
+
+        return redirect()->route('comidas.index')
+                        ->with('success', 'Comida actualizada correctamente');
+    }
+
     public function destroy($id)
     {
         Comida::destroy($id);
